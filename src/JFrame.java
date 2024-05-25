@@ -7,6 +7,8 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.UIManager;
 import javax.swing.*;
 import java.io.*;
+import java.net.*;
+import java.util.ArrayList;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.Scanner;
 
@@ -18,7 +20,7 @@ import java.util.Scanner;
  */
 
 //public class RecIntegral
-public class JFrame extends javax.swing.JFrame {
+public class JFrame extends javax.swing.JFrame{
     
     public JFrame() {
         initComponents();
@@ -29,6 +31,19 @@ public class JFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        jDialog1 = new javax.swing.JDialog();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        Tcount = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jDialog2 = new javax.swing.JDialog();
+        ServerIPif = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        ServerPortif = new javax.swing.JTextField();
+        ConnectButton = new javax.swing.JButton();
+        ConnectionStateText = new javax.swing.JLabel();
+        ConnectExitButton = new javax.swing.JButton();
         lower_bound_ent = new javax.swing.JTextField();
         step_ent = new javax.swing.JTextField();
         upper_bound_ent = new javax.swing.JTextField();
@@ -62,6 +77,144 @@ public class JFrame extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        ServerOptionsButton = new javax.swing.JMenuItem();
+
+        jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jDialog1.setTitle("Settings");
+        jDialog1.setModal(true);
+
+        jButton2.setText("OK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Количество потоков");
+
+        Tcount.setText("4");
+
+        jLabel2.setText("jLabel2");
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDialog1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Tcount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDialog1Layout.createSequentialGroup()
+                                .addGap(119, 119, 119)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jDialog1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Tcount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jDialog2.setResizable(false);
+
+        ServerIPif.setText("localhost");
+        ServerIPif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ServerIPifActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Server IP");
+
+        jLabel4.setText("Server Port");
+
+        ServerPortif.setText("9642");
+        ServerPortif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ServerPortifActionPerformed(evt);
+            }
+        });
+
+        ConnectButton.setText("подключиться");
+        ConnectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConnectButtonActionPerformed(evt);
+            }
+        });
+
+        ConnectionStateText.setText("не подключено");
+
+        ConnectExitButton.setText("OK");
+        ConnectExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConnectExitButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDialog2Layout.createSequentialGroup()
+                        .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jDialog2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ServerPortif, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDialog2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(39, 39, 39)
+                                .addComponent(ServerIPif, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(18, Short.MAX_VALUE))
+                    .addGroup(jDialog2Layout.createSequentialGroup()
+                        .addComponent(ConnectExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ConnectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))))
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(ConnectionStateText)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(ServerIPif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(ServerPortif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(ConnectionStateText)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ConnectExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConnectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -313,6 +466,22 @@ public class JFrame extends javax.swing.JFrame {
 
         jMenu1.add(jMenu3);
 
+        jMenuItem5.setText("Настройки");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        ServerOptionsButton.setText("Сервер");
+        ServerOptionsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ServerOptionsButtonActionPerformed(evt);
+            }
+        });
+        jMenu1.add(ServerOptionsButton);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -433,6 +602,7 @@ public class JFrame extends javax.swing.JFrame {
             this.Upper_bound = Upper_bound;
             this.Lower_bound = Lower_bound;
             this.Step = Step;
+            System.out.print("\nTH: " +Upper_bound + " " + Lower_bound+ " " + Step );
         }
         public void run()
         {
@@ -447,6 +617,135 @@ public class JFrame extends javax.swing.JFrame {
         }
         public double GetResult(){return Res;}
         
+    }
+    
+    public class MessageListener extends Thread
+    {
+        public ArrayList<Message> MessageList;
+        private BufferedReader in;
+        
+        public MessageListener()
+        {
+            try {
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            MessageList = new ArrayList<Message>();
+        }
+        
+        public String FindMessage(String Command)
+        {
+            Message BM = null;
+            String Result = "";
+            if(MessageList.size() > 0)
+            {
+                //System.out.print("3");
+                for(int i = 0; i < MessageList.size(); i ++)
+                {
+                    if(MessageList.get(i).Command.equals(Command))
+                    {
+                        BM = MessageList.get(i);
+                        Result = BM.Text;
+                        break;
+                    }
+                }
+            }
+            MessageList.remove(BM);
+            return Result;
+        }
+        
+        public String WaitMessage(String Command)
+        {
+            System.out.println("oj Nach");
+            Message BM = null;
+            String Result = "";
+            boolean CIC = true;
+            //System.out.print("1");
+            while(CIC)
+            {
+                System.out.print("");
+                if(MessageList.size() > 0)
+                {
+                    System.out.print("");
+                    //System.out.print("3");
+                    for(int i = 0; i < MessageList.size(); i ++)
+                    {
+                        if(MessageList.get(i).Command.equals(Command))
+                        {
+                            BM = MessageList.get(i);
+                            Result = BM.Text;
+                            CIC = false;
+                            break;
+                        }
+                    }
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    
+                }
+            }
+            MessageList.remove(BM);
+            return Result;
+        }
+        
+        
+        public void run()
+        {
+            String NewMessage;
+            while(Connected)
+            {
+                try {
+                    NewMessage = in.readLine();
+                    System.out.println(NewMessage); 
+                    MessageList.add(new Message(NewMessage));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    break;
+                }
+            }
+        }
+    }
+    
+    public class Message
+    {
+        private String Command;
+        private String Text;
+        
+        public Message(String UPText)
+        {
+            String[] Tokens = UPText.split(" ");
+            Command = Tokens[0];
+            Text = "";
+            for(int i = 1; i < Tokens.length; i ++)
+            {
+                Text += Tokens[i];
+                if(i != Tokens.length-1)Text += " ";
+            }
+        }
+        
+        public Message(String Command, String Text)
+        {
+            this.Command = Command;
+            this.Text = Text;
+        }
+        
+        public void SetMessage(String UPText)
+        {
+            String[] Tokens = UPText.split(" ");
+            Command = Tokens[1];
+            Text = "";
+            for(int i = 1; i < Tokens.length; i ++)
+            {
+                Text += Tokens[i];
+                if(i != Tokens.length-1)Text += " ";
+            }
+        }
+        
+        public String Command() {return Command;}
+        public String Text() {return Text;}
+
     }
     LinkedList<RecIntegral> ConteinerData = new LinkedList<>();
     
@@ -469,19 +768,16 @@ public class JFrame extends javax.swing.JFrame {
         double Res = 0;
         ThreadCalculateClass[] threads = new ThreadCalculateClass[ThreadCount];
         double step = (Upper_bound - Lower_bound)/ ThreadCount;
-        double b = 3;
 
-        // Создание и запуск потоков
         for (int i = 0; i < ThreadCount; i++) 
         {
-            double lowerBound = i * step;
-            double upper = Math.min((i + 1) * step, Upper_bound);
-            b = upper;
+            double lowerBound = (i * step) + Lower_bound;
+            
+            double upper = Math.min(((i+1) * step) + Lower_bound, Upper_bound);
             threads[i] = new ThreadCalculateClass(upper, lowerBound,Step);
             threads[i].start();
         }
 
-        // Ожидание завершения всех потоков
         try
         {
             for (ThreadCalculateClass thread : threads) {
@@ -490,11 +786,54 @@ public class JFrame extends javax.swing.JFrame {
             }
         } catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, "Ошибка при сохранении (" + e.getMessage() + ")");
+            JOptionPane.showMessageDialog(null, "Ошибка при вычислении (" + e.getMessage() + ")");
         }
                 
         return Res;
     }
+    
+    public class NetProcceser extends Thread
+    {
+        public void run()
+        {
+            System.out.print("");
+            while(Connected)
+            {
+                System.out.print("");
+                String message = messageListener.WaitMessage("CALC_START");
+                System.out.println("zapros na vich " + message);
+                String[] Tokens = message.split(" ");
+                double Result = MutliThreadCalculate(Double.parseDouble(Tokens[1]),Double.parseDouble(Tokens[2]),Double.parseDouble(Tokens[3]),2);
+                PrintWriter out = null;
+                try {
+                    out = new PrintWriter(socket.getOutputStream(), true);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                System.out.println("OTP: " + "CALC_END " + Tokens[0] + " " + Result);
+                out.println("CALC_END " + Tokens[0] + " " + Result);
+                out.flush();
+            }
+        }
+    }
+
+    public static Socket socket;
+    public static boolean Connected = false;
+    public static MessageListener messageListener;
+    public static NetProcceser NP;
+    public double NetCalculate(double Upper_bound, double Lower_bound, double Step) throws IOException
+    {
+        int ProccesCount;
+        
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        out.println("CALC " + Upper_bound + " " + Lower_bound + " " + Step);
+        out.flush();
+        String message = "";
+        message = messageListener.WaitMessage("CALC_RESULT");
+        
+        return Double.parseDouble(message);
+    }
+    
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     //ВЫЧИСЛЕНИЕ
     private void Calcul_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Calcul_buttonActionPerformed
@@ -506,14 +845,26 @@ public class JFrame extends javax.swing.JFrame {
            Lower_bound = Double.parseDouble(myTable.getValueAt(selectedRow, 0).toString());
            Upper_bound = Double.parseDouble(myTable.getValueAt(selectedRow, 1).toString());
            Step = Double.parseDouble(myTable.getValueAt(selectedRow, 2).toString());
-        }
-        int Tcount = (int)(Upper_bound - Lower_bound) /  4;
-        Res = MutliThreadCalculate(Upper_bound, Lower_bound, Step,4);
+        }   
         
+        long Start = System.nanoTime();
+        if(!Connected) Res = MutliThreadCalculate(Upper_bound, Lower_bound, Step, Integer.parseInt(Tcount.getText()));
+        if(Connected) 
+        {
+            try {
+                Res = NetCalculate(Upper_bound, Lower_bound, Step);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        long End = System.nanoTime();
+        End = (End - Start)/1000;
+        jLabel2.setText("вычисление МП.: " + End);
         myTable.setValueAt(Res, selectedRow, 3);
     }//GEN-LAST:event_Calcul_buttonActionPerformed
     //ДОБАВЛЕНИЕ
     private void Add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_buttonActionPerformed
+
         DefaultTableModel myTable=(DefaultTableModel)CurTable.getModel();
         myTable.insertRow(0, new Object[]{
             lower_bound_ent.getText(),
@@ -524,7 +875,14 @@ public class JFrame extends javax.swing.JFrame {
            Lower_bound = Double.parseDouble(myTable.getValueAt(0, 0).toString());
            Upper_bound = Double.parseDouble(myTable.getValueAt(0, 1).toString());
            Step = Double.parseDouble(myTable.getValueAt(0, 2).toString());
+           
+           
+        long Start = System.nanoTime();
+           
         Res = calculate(Upper_bound, Lower_bound, Step);
+        long End = System.nanoTime();
+        End = (End - Start)/1000;
+        jLabel2.setText("вычисление обычн.: " + End);
         myTable.setValueAt(Res, 0, 3);
     }//GEN-LAST:event_Add_buttonActionPerformed
     //УДАЛЕНИЕ
@@ -740,29 +1098,52 @@ public class JFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_DeleteMain_Button1ActionPerformed
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+jDialog1.setSize(250,180);
+        jDialog1.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jDialog1.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ServerOptionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServerOptionsButtonActionPerformed
+        jDialog2.setSize(340,230);
+        jDialog2.setVisible(true);
+    }//GEN-LAST:event_ServerOptionsButtonActionPerformed
+
+    private void ConnectExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnectExitButtonActionPerformed
+        jDialog2.setVisible(false);
+    }//GEN-LAST:event_ConnectExitButtonActionPerformed
+
+    private void ConnectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnectButtonActionPerformed
+        if(!Connected)
+        {
+            try {
+                Connected = true;
+                socket = new Socket(ServerIPif.getText(),Integer.parseInt(ServerPortif.getText()));
+                messageListener = new MessageListener();
+                messageListener.start();
+                NP = new NetProcceser();
+                NP.start();
+                ConnectionStateText.setText("Подключенно");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                ConnectionStateText.setText("Не удалось подключиться");
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }*/
+        }
+    }//GEN-LAST:event_ConnectButtonActionPerformed
+
+    private void ServerPortifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServerPortifActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ServerPortifActionPerformed
+
+    private void ServerIPifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ServerIPifActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ServerIPifActionPerformed
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+    public static void main(String args[]){
         try
         {
             javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
@@ -770,7 +1151,6 @@ public class JFrame extends javax.swing.JFrame {
         {
             
         }
-        //</editor-fold>
         Collection<String> a;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -787,6 +1167,9 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton Calcul_button;
     private javax.swing.JButton CleanCont_Button;
     private javax.swing.JTable ConTable;
+    private javax.swing.JButton ConnectButton;
+    private javax.swing.JButton ConnectExitButton;
+    private javax.swing.JLabel ConnectionStateText;
     private javax.swing.JScrollPane ConteinerTable;
     private javax.swing.JTable CurTable;
     private javax.swing.JScrollPane CurrentTable;
@@ -799,9 +1182,20 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JButton Return_Button;
     private javax.swing.JButton SaveConteiner_Button;
     private javax.swing.JScrollPane SaveTable;
+    private javax.swing.JTextField ServerIPif;
+    private javax.swing.JMenuItem ServerOptionsButton;
+    private javax.swing.JTextField ServerPortif;
     private javax.swing.JLabel Stext;
+    private javax.swing.JTextField Tcount;
     private javax.swing.JLabel UBtext;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -810,6 +1204,7 @@ public class JFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField lower_bound_ent;
